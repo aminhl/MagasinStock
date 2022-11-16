@@ -2,10 +2,7 @@ package com.nexthope.magasinstock.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,4 +19,6 @@ public class DetailFournisseur implements Serializable {
     Date dateDebutCollaboration;
     String adresse;
     String matricule;
+    @OneToOne(cascade = CascadeType.ALL)
+    Fournisseur fournisseur;
 }

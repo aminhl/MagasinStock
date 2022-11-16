@@ -1,12 +1,10 @@
 package com.nexthope.magasinstock.entities;
 
 import lombok.*;
-import org.hibernate.annotations.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -17,7 +15,9 @@ import java.io.Serializable;
 public class SecteurActivite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long secteurActivite;
-    String codeSecteurActivite;
-    String libelleSecteurActivite;
+    private Long secteurActivite;
+    private String codeSecteurActivite;
+    private String libelleSecteurActivite;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "secteurActivites")
+    Set<Fournisseur> fournisseurs;
 }

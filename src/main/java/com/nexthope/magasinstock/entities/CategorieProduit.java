@@ -2,11 +2,9 @@ package com.nexthope.magasinstock.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -20,4 +18,6 @@ public class CategorieProduit implements Serializable {
     Long idCategorieProduit;
     String codeProduit;
     String libelleCategorieProduit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorieProduit")
+    Set<Produit> produits;
 }

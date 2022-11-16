@@ -2,11 +2,9 @@ package com.nexthope.magasinstock.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -17,8 +15,10 @@ import java.io.Serializable;
 public class Stock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idStock;
-    Integer qte;
-    Integer qteMin;
-    String libelleStock;
+    private Long idStock;
+    private Integer qte;
+    private Integer qteMin;
+    private String libelleStock;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
+    private Set<Produit> produits;
 }

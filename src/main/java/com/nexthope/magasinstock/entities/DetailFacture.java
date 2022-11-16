@@ -2,11 +2,9 @@ package com.nexthope.magasinstock.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -17,9 +15,13 @@ import java.io.Serializable;
 public class DetailFacture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idDetailFacture;
-    Integer qteCommande;
-    float prixTotalDetail;
-    Integer pourcentageRemise;
-    float montantRemise;
+    private Long idDetailFacture;
+    private Integer qteCommande;
+    private float prixTotalDetail;
+    private Integer pourcentageRemise;
+    private float montantRemise;
+    @ManyToOne
+    Facture facture;
+    @ManyToOne(cascade = CascadeType.ALL)
+    Produit produit;
 }

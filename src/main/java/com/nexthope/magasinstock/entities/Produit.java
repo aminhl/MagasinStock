@@ -2,12 +2,10 @@ package com.nexthope.magasinstock.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -18,11 +16,16 @@ import java.util.Date;
 public class Produit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idProduit;
-    String codeProduit;
-    String libelleProduit;
-    String prix;
-    Date dateCreation;
-    Date dateDerniereModification;
-
+    private Long idProduit;
+    private String codeProduit;
+    private String libelleProduit;
+    private String prix;
+    private Date dateCreation;
+    private Date dateDerniereModification;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+    private Set<DetailFacture> detailFacture;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private CategorieProduit categorieProduit;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Stock stock;
 }

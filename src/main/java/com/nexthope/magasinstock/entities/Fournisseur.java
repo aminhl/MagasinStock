@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -15,9 +16,15 @@ import java.io.Serializable;
 public class Fournisseur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idFournisseur;
-    String codeFournisseur;
-    String libelleFournisseur;
+    private Long idFournisseur;
+    private String codeFournisseur;
+    private String libelleFournisseur;
     @Enumerated(EnumType.STRING)
-    CategorieFournisseur categorieFournisseur;
+    private CategorieFournisseur categorieFournisseur;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fournisseur")
+    Set<Facture> factures;
+    @ManyToMany(cascade = CascadeType.ALL)
+    Set<SecteurActivite> secteurActivites;
+    @OneToOne(cascade = CascadeType.ALL ,mappedBy = "detailFournisseur" )
+    DetailFournisseur detailFournisseur;
 }
