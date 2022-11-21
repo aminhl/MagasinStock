@@ -19,6 +19,6 @@ public class DetailFournisseur implements Serializable {
     Date dateDebutCollaboration;
     String adresse;
     String matricule;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "detailFournisseur" )
     Fournisseur fournisseur;
 }

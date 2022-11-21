@@ -25,6 +25,6 @@ public class Fournisseur implements Serializable {
     Set<Facture> factures;
     @ManyToMany(cascade = CascadeType.ALL)
     Set<SecteurActivite> secteurActivites;
-    @OneToOne(cascade = CascadeType.ALL ,mappedBy = "detailFournisseur" )
+    @OneToOne(cascade = CascadeType.ALL)
     DetailFournisseur detailFournisseur;
 }
